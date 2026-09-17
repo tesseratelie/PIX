@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#8A684F">
+  <title>Chave Pix | Tessera Ateliê</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap');
+
+    :root {
+      --bege-claro: #F8F1E7;
+      --bege: #EDE0D1;
+      --bege-escuro: #D9C3AD;
+      --marrom: #76553F;
+      --marrom-escuro: #553B2B;
+      --marrom-suave: #96745B;
+      --branco: #FFFDF9;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 28px 16px;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(217,195,173,.30), transparent 28%),
+        radial-gradient(circle at 90% 90%, rgba(150,116,91,.13), transparent 30%),
+        var(--bege-claro);
+      color: var(--marrom-escuro);
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 520px;
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,253,249,.82);
+      border: 1px solid rgba(118,85,63,.18);
+      border-radius: 28px;
+      padding: 42px 30px 34px;
+      box-shadow: 0 18px 55px rgba(85,59,43,.13);
+      text-align: center;
+    }
+
+    /* Detalhes decorativos */
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      width: 115px;
+      height: 115px;
+      border: 1px solid rgba(118,85,63,.14);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .page::before {
+      top: -65px;
+      left: -65px;
+    }
+
+    .page::after {
+      bottom: -65px;
+      right: -65px;
+    }
+
+    .logo-area {
+      margin-bottom: 30px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Espaço para a logo oficial da Tessera.
+       Quando você me mandar a imagem, posso colocar aqui. */
+    .logo {
+      display: inline-block;
+      color: var(--marrom);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 42px;
+      font-weight: 600;
+      letter-spacing: .5px;
+      line-height: .9;
+    }
+
+    .atelier {
+      display: block;
+      margin-top: 8px;
+      color: var(--marrom-suave);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+    }
+
+    .ornament {
+      width: 80px;
+      height: 1px;
+      background: var(--bege-escuro);
+      margin: 20px auto 0;
+      position: relative;
+    }
+
+    .ornament::after {
+      content: "✦";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -52%);
+      background: var(--branco);
+      padding: 0 8px;
+      color: var(--marrom-suave);
+      font-size: 11px;
+    }
+
+    h1 {
+      margin-bottom: 15px;
+      color: var(--marrom);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(42px, 10vw, 58px);
+      font-weight: 600;
+      line-height: 1;
+    }
+
+    .intro {
+      max-width: 430px;
+      margin: 0 auto;
+      color: #765F4D;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .intro strong {
+      color: var(--marrom);
+      font-weight: 600;
+    }
+
+    .sparkle {
+      display: block;
+      margin-top: 7px;
+      color: var(--marrom);
+      font-size: 18px;
+      letter-spacing: 3px;
+    }
+
+    .pix-card {
+      margin: 30px 0 26px;
+      padding: 24px 20px 20px;
+      background: var(--bege);
+      border: 1px solid var(--bege-escuro);
+      border-radius: 20px;
+    }
+
+    .pix-label {
+      margin-bottom: 12px;
+      color: var(--marrom);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .pix-key {
+      width: 100%;
+      padding: 14px 13px;
+      background: rgba(255,253,249,.85);
+      border: 1px solid rgba(118,85,63,.18);
+      border-radius: 12px;
+      color: var(--marrom-escuro);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      line-height: 1.5;
+      word-break: break-all;
+      user-select: all;
+    }
+
+    .copy-btn {
+      width: 100%;
+      margin-top: 13px;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 12px;
+      background: var(--marrom);
+      color: #FFFDF9;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      transition: transform .18s ease, background .18s ease, box-shadow .18s ease;
+      box-shadow: 0 7px 18px rgba(118,85,63,.18);
+    }
+
+    .copy-btn:hover {
+      background: var(--marrom-escuro);
+      transform: translateY(-1px);
+    }
+
+    .copy-btn:active {
+      transform: translateY(0);
+    }
+
+    .success {
+      min-height: 20px;
+      margin-top: 11px;
+      color: var(--marrom);
+      font-size: 12px;
+      font-weight: 500;
+    }
+
+    .thanks {
+      color: var(--marrom);
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-style: italic;
+      font-weight: 600;
+    }
+
+    .footer-ornament {
+      width: 55px;
+      height: 1px;
+      background: var(--bege-escuro);
+      margin: 12px auto 0;
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 14px;
+        align-items: flex-start;
+      }
+
+      .page {
+        margin-top: 8px;
+        padding: 34px 21px 30px;
+        border-radius: 24px;
+      }
+
+      .logo {
+        font-size: 38px;
+      }
+
+      .intro {
+        font-size: 13px;
+        line-height: 1.75;
+      }
+
+      .pix-card {
+        padding: 20px 15px 17px;
+      }
+
+      .pix-key {
+        font-size: 11px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+
+    <div class="logo-area">
+      <div class="logo">Tessera</div>
+      <span class="atelier">Ateliê</span>
+      <div class="ornament"></div>
+    </div>
+
+    <h1>Chave Pix</h1>
+
+    <p class="intro">
+      Copie e cole a chave PIX abaixo no seu banco de preferência
+      e indique no formulário se o pagamento foi realizado.
+      <br>
+      <strong>É rápido, fácil e seguro!</strong>
+      <span class="sparkle">✦ ✨</span>
+    </p>
+
+    <section class="pix-card">
+      <div class="pix-label">Minha chave Pix</div>
+
+      <div class="pix-key" id="pixKey">
+        66e9e1fc-d6dd-4b59-8f51-0a3d2e5f1b20
+      </div>
+
+      <button class="copy-btn" id="copyButton" onclick="copyPix()">
+        ⧉ &nbsp; COPIAR CHAVE PIX
+      </button>
+
+      <div class="success" id="successMessage"></div>
+    </section>
+
+    <div class="thanks">Obrigada! ✦</div>
+    <div class="footer-ornament"></div>
+
+  </main>
+
+  <script>
+    function copyPix() {
+      const key = document.getElementById("pixKey").innerText.trim();
+      const button = document.getElementById("copyButton");
+      const message = document.getElementById("successMessage");
+
+      navigator.clipboard.writeText(key).then(() => {
+        button.innerHTML = "✓ &nbsp; CHAVE COPIADA!";
+        message.textContent = "Agora é só colar no aplicativo do seu banco. ✨";
+
+        setTimeout(() => {
+          button.innerHTML = "⧉ &nbsp; COPIAR CHAVE PIX";
+          message.textContent = "";
+        }, 3000);
+      }).catch(() => {
+        message.textContent = "Selecione e copie a chave acima.";
+      });
+    }
+  </script>
+</body>
+</html>
